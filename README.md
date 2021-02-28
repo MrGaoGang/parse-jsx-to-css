@@ -1,15 +1,15 @@
 # parse-jsx-to-css
 
-Parse the `class` in the `js/tsx/vue` file, and automatically generate the `less/sass/css` file.
+Parse the `class/className` in the `react/vue` file, and automatically generate the `less/sass/css` file.
 
 ## Feature
 
-- [x] support react to less
-- [x] support react to css
-- [x] support react to sass
-- [ ] support vue to less
-- [ ] support vue to css
-- [ ] support vue to cass
+- [x] support react className to less
+- [x] support react className to css
+- [x] support react className to sass
+- [ ] support vue class to less
+- [ ] support vue class to css
+- [ ] support vue class to cass
 - [ ] support file merge
 - [ ] support one file muti return method return `<div></div>`
 - [ ] other
@@ -34,7 +34,7 @@ class Demo extends PureComponent {
 export default Demo;
 ```
 
-**generate less code:**
+**generate less/sass code:**
 
 ```less
 .login-container {
