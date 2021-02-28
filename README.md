@@ -10,6 +10,9 @@ Parse the `class` in the `js/tsx/vue` file, and automatically generate the `less
 - [] support vue to less
 - [] support vue to css
 - [] support vue to cass
+- [] support file merge
+- [] support one file muti return method return `<div></div>`
+
 - [] other
 
 ## example

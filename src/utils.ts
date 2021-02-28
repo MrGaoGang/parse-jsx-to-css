@@ -33,7 +33,7 @@ export function getOutputFullPath(options: BaseConfig) {
     0,
     options.inputPath.lastIndexOf(".") + 1
   );
-  return path + options.outType;
+  return path + (options.outType === "sass" ? "scss" :options.outType);
 }
 
 /**
