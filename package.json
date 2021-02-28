@@ -1,0 +1,42 @@
+{
+  "name": "parse-jsx-to-css",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "demo": "ts-node ./example/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrGaoGang/parse-jsx-to-css.git"
+  },
+  "keywords": [
+    "less",
+    "sass",
+    "css",
+    "jsx"
+  ],
+  "author": "mrgaogang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrGaoGang/parse-jsx-to-css/issues"
+  },
+  "homepage": "https://github.com/MrGaoGang/parse-jsx-to-css#readme",
+  "devDependencies": {
+    "@types/babel__core": "^7.1.12",
+    "@types/node": "^14.14.31",
+    "@types/prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.13.0",
+    "@babel/parser": "^7.13.4",
+    "@babel/traverse": "^7.13.0",
+    "@babel/types": "^7.13.0",
+    "prettier": "^2.2.1"
+  }
+}
