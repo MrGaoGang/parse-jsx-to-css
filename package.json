@@ -8,7 +8,8 @@
   },
   "scripts": {
     "react-demo": "ts-node ./example/react/index.ts",
-    "vue-demo": "ts-node ./example/vue/index.ts"
+    "vue-demo": "ts-node ./example/vue/index.ts",
+    "build": "rm -rf ./lib && tsc"
   },
   "repository": {
     "type": "git",
