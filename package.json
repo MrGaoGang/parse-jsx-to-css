@@ -7,7 +7,8 @@
     "example": "example"
   },
   "scripts": {
-    "demo": "ts-node ./example/index.ts"
+    "react-demo": "ts-node ./example/react/index.ts",
+    "vue-demo": "ts-node ./example/vue/index.ts"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "@babel/parser": "^7.13.4",
     "@babel/traverse": "^7.13.0",
     "@babel/types": "^7.13.0",
+    "@vue/compiler-dom": "^3.0.6",
     "prettier": "^2.2.1"
   }
 }
