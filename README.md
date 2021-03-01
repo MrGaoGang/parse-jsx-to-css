@@ -4,15 +4,11 @@ Parse the `class/className` in the `react/vue` file, and automatically generate 
 
 ## Feature
 
-- [x] support react `className` to `less`
-- [x] support react `className` to `css`
-- [x] support react `className` to `sass`
-- [x] support vue `class` to `less`
-- [x] support vue `class` to `css`
-- [x] support vue `class` to `cass`
-- [ ] support file merge
+- [x] support `react` `className` to `less/css/sass`
+- [x] support `vue` `class` to `less/css/sass`
 - [x] support one file muti return method return `<div></div>`
-- [ ] other
+- [ ] support file merge
+- [ ] support `class/className` expression
 
 ## example
 
