@@ -25,7 +25,10 @@ export function wrapCssCodeFromClass(
     const names = itemClass.name.split(" ").filter((ele) => ele);
     result += `${itemClass.children
       ?.map((e) => {
-        return `${names.map((ele) => "." + ele).join("")} `+ wrapCssCodeFromClass(e, names);
+        return (
+          `${names.map((ele) => "." + ele).join("")} ` +
+          wrapCssCodeFromClass(e, names)
+        );
       })
       .join("\n")}`;
   } else {
@@ -39,7 +42,7 @@ export function wrapCssCodeFromClass(
   return result;
 }
 
-export default function (data: ItemClassName, options: BaseConfig) {
+export default function (data: ItemClassName, options: BaseConfig) :Promise<string>{
   let code = wrapCssCodeFromClass(data);
-  generate(code, options);
+  return generate(code, options);
 }

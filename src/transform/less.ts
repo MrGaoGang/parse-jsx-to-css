@@ -35,7 +35,10 @@ export function wrapLessCssCodeFromClass(
     .join("\n")}`;
 }
 
-export default function (data: ItemClassName, options: BaseConfig) {
+export default function (
+  data: ItemClassName,
+  options: BaseConfig
+): Promise<string> {
   let code = wrapLessCssCodeFromClass(data);
-  generate(code, options);
+  return generate(code, options);
 }

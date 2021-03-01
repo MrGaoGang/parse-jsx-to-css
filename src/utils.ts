@@ -109,9 +109,9 @@ export function collectionVueClassNames(
  * @param options
  */
 export function getOutputFullPath(options: BaseConfig) {
-  const path = options.inputPath.substring(
+  const path = options.input.substring(
     0,
-    options.inputPath.lastIndexOf(".") + 1
+    options.input.lastIndexOf(".") + 1
   );
   return path + (options.outType === "sass" ? "scss" : options.outType);
 }

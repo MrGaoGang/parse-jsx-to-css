@@ -1,11 +1,10 @@
 import { BaseConfig, ItemClassName } from "../types";
 import * as prettier from "prettier";
-import fs from "fs";
-import { getOutputFullPath } from "../utils";
-
-export default function (code: string, options: BaseConfig) {
-  code = prettier.format(code, {
-    parser: options.outType === "sass" ? "scss" : options.outType || "less",
+export default function (code: string, options: BaseConfig): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    code = prettier.format(code, {
+      parser: options.outType === "sass" ? "scss" : options.outType || "less",
+    });
+    resolve(code);
   });
-  fs.writeFileSync(getOutputFullPath(options), code);
 }

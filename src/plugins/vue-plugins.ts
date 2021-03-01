@@ -3,8 +3,13 @@ import { collectionVueClassNames } from "../utils";
 import { BaseConfig } from "../types";
 import transform from "../transform/index";
 
-export default function (vueAst: RootNode, options: BaseConfig) {
+export default function (
+  vueAst: RootNode,
+  options: BaseConfig,
+  promiseAllCodes: Promise<string>[]
+) {
   const classes = collectionVueClassNames(vueAst);
-  console.log(JSON.stringify(classes));
-  transform(classes, options);
+  const data = transform(classes, options);
+  promiseAllCodes.push(data);
+
 }

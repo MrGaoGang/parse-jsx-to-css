@@ -2,16 +2,18 @@ import { BaseConfig, ItemClassName } from "../types";
 import lessTransfrom from "./less";
 import cssTransfrom from "./css";
 
-export default function (classes: ItemClassName, options: BaseConfig) {
+export default function (
+  classes: ItemClassName,
+  options: BaseConfig
+): Promise<string> {
   switch (options.outType) {
     case "less":
-      lessTransfrom(classes, options);
-      break;
+      return lessTransfrom(classes, options);
     case "sass":
-      lessTransfrom(classes, options);
-      break;
+      return lessTransfrom(classes, options);
     case "css":
-      cssTransfrom(classes, options);
-      break;
+      return cssTransfrom(classes, options);
   }
+
+  return Promise.resolve("");
 }

@@ -1,5 +1,9 @@
 import React, { PureComponent } from 'react'
 
+function LoginButton(){
+    return <div className="login-button"></div>
+}
+
 class Demo extends PureComponent {
     constructor(props) {
         super(props)

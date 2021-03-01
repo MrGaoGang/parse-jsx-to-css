@@ -1,6 +1,24 @@
 import path from "path";
 import transform from "../../src/index";
+import fs from "fs";
+
+// generate file
 transform({
-  inputPath: path.join(__dirname, "./demo.vue"),
-  outType:'sass'
+  input: path.join(__dirname, "./demo.vue"),
+  outType: "less",
+});
+
+// get result code
+const code = fs.readFileSync(path.join(__dirname, "./demo.vue"), {
+  encoding: "utf-8",
+});
+
+transform({
+  input: code,
+  transformType: "code",
+  outType: "less",
+  language:'vue',
+  callback: (res) => {
+    console.log(res);
+  },
 });

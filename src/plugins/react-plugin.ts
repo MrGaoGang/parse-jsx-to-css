@@ -3,7 +3,7 @@ import * as t from "@babel/types";
 import { BabelPluginsType, BaseConfig } from "../types";
 import { collectAllReactClassNames } from "../utils";
 import transform from "../transform/index";
-export default function (options: BaseConfig): BabelPluginsType {
+export default function (options: BaseConfig,promiseAllCodes:Promise<string>[]): BabelPluginsType {
   return {
     enter(path: NodePath) {
       // 找到return的根jsx
@@ -13,8 +13,12 @@ export default function (options: BaseConfig): BabelPluginsType {
       ) {
         const node: t.JSXElement = path.node;
         const classes = collectAllReactClassNames(node);
-        transform(classes, options);
+        const data = transform(classes, options);
+        promiseAllCodes.push(data);
       }
     },
+    exit(path:NodePath){
+
+    }
   };
 }
