@@ -2,6 +2,8 @@
 
 Parse the `class/className` in the `react/vue` file, and automatically generate the `less/sass/css` file.
 
+[Online transform](https://mrgaogang.github.io/parse-jsx-to-css-plugins/)
+
 ## Feature
 
 - [x] support `react` `className` to `less/css/sass`
