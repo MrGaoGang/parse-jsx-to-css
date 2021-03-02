@@ -1,5 +1,5 @@
 import { BaseConfig, ItemClassName } from "../types";
-import { classNameExtendParent } from "../utils";
+import { classNameExtendParent, parentHasSamePrefixChild } from "../utils";
 import generate from "../generate";
 /**
  * 具体嵌套层级的less
@@ -12,8 +12,9 @@ export function wrapLessCssCodeFromClass(
   if (itemClass.name) {
     // maybe exist muti classnames
     const names = itemClass.name.split(" ").filter((ele) => ele);
-    return `${names.map((ele) => {
-      if (parentName) {
+   return `${names.map((ele) => {
+     // if has muti parent,use & is error
+      if (parentName.length === 1) {
         const parent = classNameExtendParent(ele, parentName);
         if (parent) {
           return `&` + ele.substr(parent.length) + " ";

@@ -109,10 +109,7 @@ export function collectionVueClassNames(
  * @param options
  */
 export function getOutputFullPath(options: BaseConfig) {
-  const path = options.input.substring(
-    0,
-    options.input.lastIndexOf(".") + 1
-  );
+  const path = options.input.substring(0, options.input.lastIndexOf(".") + 1);
   return path + (options.outType === "sass" ? "scss" : options.outType);
 }
 
@@ -121,12 +118,37 @@ export function getOutputFullPath(options: BaseConfig) {
  * @param className
  * @param parent
  */
-export function classNameExtendParent(className: string, parent: string[]) {
+export function classNameExtendParent(
+  className: string,
+  parent: string[]
+): [string, number] {
   for (let index = 0; index < parent.length; index++) {
     const ele = parent[index];
     if (className.startsWith(ele)) {
-      return ele;
+      return [ele, index];
     }
   }
-  return "";
+  return ["", -1];
+}
+
+/**
+ * parent has same prefix child
+ * @param parentName 
+ * @param children 
+ */
+export function parentHasSamePrefixChild(
+  parentName: string[],
+  itemClass: ItemClassName,
+): [boolean, number] {
+  if(itemClass.children&& Array.isArray(itemClass.children)){
+    for (let i = 0; i < itemClass.children.length; i++) {
+      const element = itemClass.children[i].name || '';
+      const [parent, index] = classNameExtendParent(element, parentName);
+      if (parent && index !== -1) {
+        return [true, index];
+      }
+    }
+  }
+  
+  return [false, -1];
 }

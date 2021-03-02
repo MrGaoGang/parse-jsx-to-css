@@ -16,7 +16,7 @@ const code = fs.readFileSync(path.join(__dirname, "./demo.vue"), {
 transform({
   input: code,
   transformType: "code",
-  outType: "less",
+  outType: "css",
   language:'vue',
   callback: (res) => {
     console.log(res);

@@ -13,7 +13,7 @@ const code = fs.readFileSync(path.join(__dirname, "./demo.js"), {
 transform({
   input: code,
   transformType: "code",
-  outType: "less",
+  outType: "css",
   callback: (res) => {
     console.log(res);
   },

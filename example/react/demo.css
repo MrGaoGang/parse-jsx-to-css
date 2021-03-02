@@ -1,10 +1,10 @@
 .login-button {
 }
 
-.login-container {
+.login-container.bbb {
 }
-.login-container .login-container--user-name {
+.login-container.bbb .login-container--user-name {
 }
 
-.login-container .login-container--password {
+.login-container.bbb .login-container--password {
 }
