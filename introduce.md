@@ -18,6 +18,43 @@
 
 - `class/className`表达式的情况
 
+**一个简单的例子**
+
+**React** 代码:
+
+```js
+import React, { PureComponent } from "react";
+function LoginButton() {
+  return <div className="login-button"></div>;
+}
+class Demo extends PureComponent {
+  render() {
+    return (
+      <div className="login-container">
+        <div className="login-container--user-name"></div>
+        <div className="login-container--password"></div>
+      </div>
+    );
+  }
+}
+
+export default Demo;
+```
+
+**生成的 less/scss 代码:**
+
+```less
+.login-button {
+}
+
+.login-container {
+  &--user-name {
+  }
+  &--password {
+  }
+}
+```
+
 读到这里，激动的心油然而生，到底应该怎么去使用呢？
 
 ## 使用
