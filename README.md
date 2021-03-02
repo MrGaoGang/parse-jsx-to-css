@@ -5,7 +5,7 @@ Parse the `class/className` in the `react/vue` file, and automatically generate 
 ## Usage
 
 - [online](https://mrgaogang.github.io/parse-jsx-to-css-plugins/)
-- [scode plugins](https://marketplace.visualstudio.com/items?itemName=mrgaogang.parse-to-css-vscode-plugin)
+- [vscode plugins](https://marketplace.visualstudio.com/items?itemName=mrgaogang.parse-to-css-vscode-plugin)
 
 ## Feature
 
