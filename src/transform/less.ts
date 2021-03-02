@@ -15,7 +15,7 @@ export function wrapLessCssCodeFromClass(
    return `${names.map((ele) => {
      // if has muti parent,use & is error
       if (parentName.length === 1) {
-        const parent = classNameExtendParent(ele, parentName);
+        const [parent,index] = classNameExtendParent(ele, parentName);        
         if (parent) {
           return `&` + ele.substr(parent.length) + " ";
         }

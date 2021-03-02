@@ -1,10 +1,10 @@
-.login-button {
+.top-header,
+.aa {
+}
+.top-header.aa .left-container {
+}
+.left-container .logo {
 }
 
-.login-container.bbb {
-}
-.login-container.bbb .login-container--user-name {
-}
-
-.login-container.bbb .login-container--password {
+.top-header.aa .right-container {
 }

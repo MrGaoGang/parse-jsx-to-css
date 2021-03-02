@@ -14,23 +14,26 @@ export function wrapCssCodeFromClass(
   if (itemClass.name) {
     // maybe exist muti classnames
     const names = itemClass.name.split(" ").filter((ele) => ele);
-    result = `${names
+    result = `${
+      parentName.length > 0
+        ? parentName
+            .map((ele) => {
+              return "." + ele;
+            })
+            .join("")
+        : ""
+    } ${names
       .map((ele) => {
         return "." + ele;
       })
-      .join("")} {}\n`;
+      .join(",")} {}\n`;
   }
-
   if (itemClass.name && itemClass.children && itemClass.children.length > 0) {
     const names = itemClass.name.split(" ").filter((ele) => ele);
-    result += `${itemClass.children
-      ?.map((e) => {
-        return (
-          `${names.map((ele) => "." + ele).join("")} ` +
-          wrapCssCodeFromClass(e, names)
-        );
-      })
-      .join("\n")}`;
+
+    itemClass.children.forEach((ele) => {
+      result += wrapCssCodeFromClass(ele, names) + "\n";
+    });
   } else {
     result += `${itemClass.children
       ?.map((e) => {
@@ -42,7 +45,10 @@ export function wrapCssCodeFromClass(
   return result;
 }
 
-export default function (data: ItemClassName, options: BaseConfig) :Promise<string>{
+export default function (
+  data: ItemClassName,
+  options: BaseConfig
+): Promise<string> {
   let code = wrapCssCodeFromClass(data);
   return generate(code, options);
 }
