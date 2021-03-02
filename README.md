@@ -2,10 +2,13 @@
 
 Parse the `class/className` in the `react/vue` file, and automatically generate the `less/sass/css` file.
 
+[中文介绍](./introduce.md)
+
 ## Usage
 
 - [online](https://mrgaogang.github.io/parse-jsx-to-css-plugins/)
 - [vscode plugins](https://marketplace.visualstudio.com/items?itemName=mrgaogang.parse-to-css-vscode-plugin)
+
 
 ## Feature
 
