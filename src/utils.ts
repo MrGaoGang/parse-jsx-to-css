@@ -1,4 +1,9 @@
-import { JSXElement } from "@babel/types";
+import {
+  JSXElement,
+  JSXExpressionContainer,
+  JSXAttribute,
+  JSXSpreadAttribute,
+} from "@babel/types";
 import {
   AttributeNode,
   DirectiveNode,
@@ -10,29 +15,77 @@ import {
 } from "@vue/compiler-dom";
 import { BaseConfig, ItemClassName } from "./types";
 
-export function collectAllReactClassNames(node: JSXElement): ItemClassName {
-  const attrs = node.openingElement.attributes;
+function isExpressionNode(
+  pet: JSXElement | JSXExpressionContainer | undefined
+): pet is JSXExpressionContainer {
+  if (!pet) {
+    return false;
+  }
+  return (<JSXExpressionContainer>pet).type === "JSXExpressionContainer";
+}
+
+function getExpressionNodeAttrs(node: JSXExpressionContainer) {
+  if (node.expression.type === "ConditionalExpression") {
+    // 针对表达式的情况，则返回表达式两个
+    let result: Array<JSXAttribute | JSXSpreadAttribute> = [];
+    const conditionNode = node.expression;
+    if (conditionNode.consequent.type === "JSXElement") {
+      result = result.concat(
+        conditionNode.consequent.openingElement.attributes
+      );
+    }
+    if (conditionNode.alternate.type === "JSXElement") {
+      result = result.concat(conditionNode.alternate.openingElement.attributes);
+    }
+
+    return result;
+  }
+  return [];
+}
+
+export function collectAllReactClassNames(
+  node: JSXElement | JSXExpressionContainer
+): ItemClassName {
   const itemJSX: ItemClassName = {
     name: "",
     children: [],
   };
-  for (let index = 0; index < attrs.length; index++) {
-    const ele = attrs[index];
-    if (ele.type === "JSXAttribute") {
-      if (
-        ele.name.name === "className" &&
-        ele.value?.type === "StringLiteral"
-      ) {
-        itemJSX.name = ele.value.value;
+  if (isExpressionNode(node)) {
+    
+    if (node.expression.type === "ConditionalExpression") {
+      const conditionNode = node.expression;
+      if (conditionNode.consequent.type === "JSXElement") {
+        itemJSX.children?.push(
+          collectAllReactClassNames(conditionNode.consequent)
+        );
+      }
+      if (conditionNode.alternate.type === "JSXElement") {
+        itemJSX.children?.push(
+          collectAllReactClassNames(conditionNode.alternate)
+        );
+      }
+      return itemJSX;
+    }
+  } else {
+    const attrs = node.openingElement.attributes;
+    for (let index = 0; index < attrs.length; index++) {
+      const ele = attrs[index];
+      if (ele.type === "JSXAttribute") {
+        if (
+          ele.name.name === "className" &&
+          ele.value?.type === "StringLiteral"
+        ) {
+          itemJSX.name = ele.value.value;
+        }
       }
     }
-  }
 
-  node.children.forEach((ele) => {
-    if (ele.type === "JSXElement") {
-      itemJSX.children?.push(collectAllReactClassNames(ele));
-    }
-  });
+    node.children.forEach((ele) => {
+      if (ele.type === "JSXElement" || ele.type === "JSXExpressionContainer") {
+        itemJSX.children?.push(collectAllReactClassNames(ele));
+      }
+    });
+  }
 
   return itemJSX;
 }
@@ -133,22 +186,22 @@ export function classNameExtendParent(
 
 /**
  * parent has same prefix child
- * @param parentName 
- * @param children 
+ * @param parentName
+ * @param children
  */
 export function parentHasSamePrefixChild(
   parentName: string[],
-  itemClass: ItemClassName,
+  itemClass: ItemClassName
 ): [boolean, number] {
-  if(itemClass.children&& Array.isArray(itemClass.children)){
+  if (itemClass.children && Array.isArray(itemClass.children)) {
     for (let i = 0; i < itemClass.children.length; i++) {
-      const element = itemClass.children[i].name || '';
+      const element = itemClass.children[i].name || "";
       const [parent, index] = classNameExtendParent(element, parentName);
       if (parent && index !== -1) {
         return [true, index];
       }
     }
   }
-  
+
   return [false, -1];
 }

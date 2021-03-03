@@ -13,34 +13,11 @@ export default function Header(props) {
       <div className="left-container">
         <div className="logo">Parse To CSS</div>
 
-        <Select
-          defaultValue={language}
-          style={{ width: 120 }}
-          onChange={(value) => {
-            onChange({
-              language: value,
-            });
-            setDefaultLanguage(value);
-          }}
-        >
-          <Option value="react">React</Option>
-          <Option value="vue">Vue</Option>
-        </Select>
-
-        <Select
-          defaultValue={outType}
-          style={{ width: 120 }}
-          onChange={(value) => {
-            onChange({
-              outType: value,
-            });
-            setDefaultType(value);
-          }}
-        >
-          <Option value="less">less</Option>
-          <Option value="css">css</Option>
-          <Option value="sass">sass</Option>
-        </Select>
+        {language === "react" ? (
+          <div className="react-cls"></div>
+        ) : (
+          <div className="vue-cls"></div>
+        )}
       </div>
       <div
         className="right-container"

@@ -12,10 +12,10 @@ export function wrapLessCssCodeFromClass(
   if (itemClass.name) {
     // maybe exist muti classnames
     const names = itemClass.name.split(" ").filter((ele) => ele);
-   return `${names.map((ele) => {
-     // if has muti parent,use & is error
+    return `${names.map((ele) => {
+      // if has muti parent,use & is error
       if (parentName.length === 1) {
-        const [parent,index] = classNameExtendParent(ele, parentName);        
+        const [parent, index] = classNameExtendParent(ele, parentName);
         if (parent) {
           return `&` + ele.substr(parent.length) + " ";
         }
@@ -29,6 +29,7 @@ export function wrapLessCssCodeFromClass(
             .join("\n")}
       }`;
   }
+
   return `${itemClass.children
     ?.map((e) => {
       return wrapLessCssCodeFromClass(e);

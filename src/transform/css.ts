@@ -37,7 +37,7 @@ export function wrapCssCodeFromClass(
   } else {
     result += `${itemClass.children
       ?.map((e) => {
-        return wrapCssCodeFromClass(e, []);
+        return wrapCssCodeFromClass(e, parentName.length > 0 ? parentName : []);
       })
       .join("\n")}`;
   }

@@ -12,7 +12,7 @@ export default function (options: BaseConfig,promiseAllCodes:Promise<string>[]):
         path.parentPath.node.type === "ReturnStatement"
       ) {
         const node: t.JSXElement = path.node;
-        const classes = collectAllReactClassNames(node);
+        const classes = collectAllReactClassNames(node);        
         const data = transform(classes, options);
         promiseAllCodes.push(data);
       }
