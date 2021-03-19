@@ -2,7 +2,7 @@
 
 Parse the `class/className` in the `react/vue` file, and automatically generate the `less/sass/css` file.
 
-[中文介绍](./introduce.md)
+[中文介绍](https://mrgaogang.github.io/other/parse-to-css.html)
 
 ## Usage
 
